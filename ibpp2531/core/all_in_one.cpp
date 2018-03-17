@@ -32,6 +32,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifndef ALL_IN_ONE
+#define ALL_IN_ONE
+
 #include "_ibpp.cpp"
 #include "_dpb.cpp"
 #include "_ibs.cpp"
@@ -53,4 +56,5 @@
 #include "transaction.cpp"
 #include "user.cpp"
 
+#endif
 // Eof

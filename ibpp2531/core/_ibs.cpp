@@ -37,6 +37,11 @@
 #pragma hdrstop
 #endif
 
+#ifdef __unix
+#include <cstring>
+using namespace std;
+#endif
+
 using namespace ibpp_internals;
 
 int IBS::SqlCode() const
@@ -99,7 +104,7 @@ IBS::~IBS()
 
 IBS::IBS(IBS& copied)
 {
-	memcpy(mVector, copied.mVector, sizeof(mVector));
+    memcpy(mVector, copied.mVector, sizeof(mVector));
 }
 
 //

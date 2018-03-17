@@ -39,6 +39,11 @@
 
 #include <math.h>
 
+#ifdef __unix
+#include <cstring>
+using namespace std;
+#endif
+
 using namespace ibpp_internals;
 
 //	(((((((( OBJECT INTERFACE IMPLEMENTATION ))))))))

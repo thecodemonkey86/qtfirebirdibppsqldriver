@@ -33,6 +33,7 @@
 #endif
 
 #include "_ibpp.h"
+#include <cstring>
 
 #ifdef HAS_HDRSTOP
 #pragma hdrstop

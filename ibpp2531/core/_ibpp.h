@@ -31,29 +31,30 @@
 #ifndef __INTERNAL_IBPP_H__
 #define __INTERNAL_IBPP_H__
 
+
 #include "ibpp.h"
 
 #if defined(__BCPLUSPLUS__) || defined(_MSC_VER) || defined(__DMC__)
 #define HAS_HDRSTOP
 #endif
 
-#if (defined(__GNUC__) && defined(IBPP_WINDOWS))
+//#if (defined(__GNUC__) && defined(IBPP_WINDOWS))
 //	Setting flags for ibase.h -- using GCC/Cygwin/MinGW on Win32
-#ifndef _MSC_VER
-#define _MSC_VER 1299
-#endif
-#ifndef _WIN32
-#define _WIN32   1
-#endif
-#endif
+//#ifndef _MSC_VER
+//#define _MSC_VER 1299
+//#endif
+//#ifndef _WIN32
+//#define _WIN32   1
+//#endif
+//#endif
 
 #include "ibase.h"		// From Firebird 1.x or InterBase 6.x installation
 
-#if (defined(__GNUC__) && defined(IBPP_WINDOWS))
+//#if (defined(__GNUC__) && defined(IBPP_WINDOWS))
 //	UNSETTING flags used above for ibase.h -- Huge conflicts with libstdc++ !
-#undef _MSC_VER
-#undef _WIN32
-#endif
+//#undef _MSC_VER
+//#undef _WIN32
+//#endif
 
 #ifdef IBPP_WINDOWS
 #include <windows.h>
@@ -985,9 +986,9 @@ public:
 	void Set(int, const char*);				// c-strings
 	void Set(int, const void*, int);		// byte buffers
 	void Set(int, const std::string&);
-	void Set(int, int16_t);
-	void Set(int, int32_t);
-	void Set(int, int64_t);
+    void Set(int, int16_t);
+    void Set(int, int32_t);
+    void Set(int, int64_t);
 	void Set(int, float);
 	void Set(int, double);
 	void Set(int, const IBPP::Timestamp&);
@@ -1065,11 +1066,11 @@ private:
 	DatabaseImpl* mDatabase;		// Attached database
 	TransactionImpl* mTransaction;	// Attached transaction
 	RowImpl* mInRow;
-	//bool* mInMissing;			// Quels paramètres n'ont pas été spécifiés
+	//bool* mInMissing;			// Quels paramÃ¨tres n'ont pas Ã©tÃ© spÃ©cifiÃ©s
 	RowImpl* mOutRow;
 	bool mResultSetAvailable;	// Executed and result set is available
 	bool mCursorOpened;			// dsql_set_cursor_name was called
-	IBPP::STT mType;			// Type de requète
+	IBPP::STT mType;			// Type de requÃ¨te
 	std::string mSql;			// Last SQL statement prepared or executed
 
 	// Internal Methods
@@ -1254,8 +1255,8 @@ private:
 	ISC_QUAD			mId;
 	bool				mDescribed;
 	ISC_ARRAY_DESC		mDesc;
-	DatabaseImpl*  		mDatabase;		// Database attachée
-	TransactionImpl*	mTransaction;	// Transaction attachée
+	DatabaseImpl*  		mDatabase;		// Database attachÃ©e
+	TransactionImpl*	mTransaction;	// Transaction attachÃ©e
 	void*				mBuffer;		// Buffer for native data
 	int					mBufferSize;	// Size of this buffer in bytes
 	int					mElemCount;		// Count of elements in this array

@@ -68,39 +68,40 @@ void IBPP::Time::SetTime(int hour, int minute, int second, int tenthousandths)
 
 void IBPP::Time::GetTime(int& hour, int& minute, int& second) const
 {
-	IBPP::ttoi(mTime, &hour, &minute, &second, 0);
+    int tenthousandths = 0;
+    IBPP::ttoi(mTime, hour, minute, second, tenthousandths);
 }
 
 void IBPP::Time::GetTime(int& hour, int& minute, int& second, int& tenthousandths) const
 {
-	IBPP::ttoi(mTime, &hour, &minute, &second, &tenthousandths);
+    IBPP::ttoi(mTime, hour, minute, second, tenthousandths);
 }
 
 int IBPP::Time::Hours() const
 {
-	int hours;
-	IBPP::ttoi(mTime, &hours, 0, 0, 0);
+    int hours = 0, minutes = 0, seconds = 0, tenthousandths = 0;
+    IBPP::ttoi(mTime, hours, minutes, seconds, tenthousandths);
 	return hours;
 }
 
 int IBPP::Time::Minutes() const
 {
-	int minutes;
-	IBPP::ttoi(mTime, 0, &minutes, 0, 0);
+    int hours = 0, minutes = 0, seconds = 0, tenthousandths = 0;
+    IBPP::ttoi(mTime, hours, minutes, seconds, tenthousandths);
 	return minutes;
 }
 
 int IBPP::Time::Seconds() const
 {
-	int seconds;
-	IBPP::ttoi(mTime, 0, 0, &seconds, 0);
+    int hours = 0, minutes = 0, seconds = 0, tenthousandths = 0;
+    IBPP::ttoi(mTime, hours, minutes, seconds, tenthousandths);
 	return seconds;
 }
 
 int IBPP::Time::SubSeconds() const	// Actually tenthousandths of seconds
 {
-	int tenthousandths;
-	IBPP::ttoi(mTime, 0, 0, 0, &tenthousandths);
+    int hours = 0, minute = 0, second = 0, tenthousandths = 0;
+    IBPP::ttoi(mTime, hours, minute, second, tenthousandths);
 	return tenthousandths;
 }
 
@@ -129,19 +130,15 @@ IBPP::Time& IBPP::Time::operator=(const IBPP::Time& assigned)
 //	Time calculations. Internal format is the number of seconds elapsed since
 //	midnight. Splits such a time in its hours, minutes, seconds components.
 
-void IBPP::ttoi(int itime, int *h, int *m, int *s, int* t)
+void IBPP::ttoi(int itime, int &h, int &m, int &s, int& t)
 {
-	int hh, mm, ss, tt;
+//	int hh, mm, ss, tt;
 
-	hh = (int) (itime / 36000000);	itime = itime - hh * 36000000;
-	mm = (int) (itime / 600000);	itime = itime - mm * 600000;
-	ss = (int) (itime / 10000);
-	tt = (int) (itime - ss * 10000);
+    h = (int) (itime / 36000000);	itime = itime - h * 36000000;
+    m = (int) (itime / 600000);	itime = itime - m * 600000;
+    s = (int) (itime / 10000);
+    t = (int) (itime - s * 10000);
 
-	if (h != 0) *h = hh;
-	if (m != 0) *m = mm;
-	if (s != 0) *s = ss;
-	if (t != 0) *t = tt;
 
 	return;
 }

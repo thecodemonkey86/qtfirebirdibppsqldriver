@@ -40,6 +40,11 @@
 #include <math.h>
 #include <time.h>
 
+#ifdef __unix
+#include <cstring>
+using namespace std;
+#endif
+
 using namespace ibpp_internals;
 
 //	(((((((( OBJECT INTERFACE IMPLEMENTATION ))))))))
@@ -516,7 +521,7 @@ bool RowImpl::Get(const std::string& name, double& retvalue)
 	if (mDescrArea == 0)
 		throw LogicExceptionImpl("Row::Get", _("The row is not initialized."));
 
-	return Get(ColumnNum(name), retvalue);
+    return Get(ColumnNum(name), retvalue);
 }
 
 bool RowImpl::Get(const std::string& name, IBPP::Timestamp& retvalue)

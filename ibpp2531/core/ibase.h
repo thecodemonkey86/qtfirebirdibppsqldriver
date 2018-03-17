@@ -627,10 +627,10 @@ ISC_STATUS ISC_EXPORT isc_dsql_sql_info(ISC_STATUS*,
 										short,
 										const ISC_SCHAR*,
 										short,
-										ISC_SCHAR*);
+                                        ISC_SCHAR*);
 
 void ISC_EXPORT isc_encode_date(const void*,
-								ISC_QUAD*);
+                                ISC_QUAD*);
 
 void ISC_EXPORT isc_encode_sql_date(const void*,
 									ISC_DATE*);

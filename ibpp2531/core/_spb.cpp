@@ -38,6 +38,11 @@
 #pragma hdrstop
 #endif
 
+#ifdef __unix
+#include <cstring>
+using namespace std;
+#endif
+
 using namespace ibpp_internals;
 
 const int SPB::BUFFERINCR = 128;

@@ -47,6 +47,14 @@
 #ifndef __IBPP_H__
 #define __IBPP_H__
 
+#ifdef __unix
+#define IBPP_LINUX
+#else
+#ifdef _WIN32
+#define IBPP_WINDOWS
+#endif
+#endif
+
 #if !defined(IBPP_WINDOWS) && !defined(IBPP_LINUX) && !defined(IBPP_DARWIN)
 #error Please define IBPP_WINDOWS/IBPP_LINUX/IBPP_DARWIN before compiling !
 #endif
@@ -68,7 +76,7 @@
 // the standard exact precision types definitions of C 99 standard are used.
 
 #if defined(_MSC_VER) || defined(__DMC__) || defined(__BCPLUSPLUS__)
-// C99 ง7.18.1.1 Exact-width integer types (only those used by IBPP)
+// C99 ยง7.18.1.1 Exact-width integer types (only those used by IBPP)
 #if defined(_MSC_VER) && (_MSC_VER < 1300)	// MSVC 6 should be < 1300
 	typedef short int16_t;
 	typedef int int32_t;
@@ -80,7 +88,7 @@
 #endif
 	typedef __int64 int64_t;
 #else
-	#include <stdint.h>			// C99 (ง7.18) integer types definitions
+	#include <stdint.h>			// C99 (ยง7.18) integer types definitions
 #endif
 
 #if !defined(_)
@@ -800,7 +808,7 @@ namespace IBPP
 		virtual IStatement* AddRef() = 0;
 		virtual void Release() = 0;
 
-	    virtual ~IStatement() { };
+        virtual ~IStatement() { }
 
 		// DEPRECATED METHODS (WON'T BE AVAILABLE IN VERSIONS 3.x)
 		virtual bool Get(int, char*) = 0;			  		// DEPRECATED
@@ -918,7 +926,7 @@ namespace IBPP
 
 	bool dtoi(int date, int* py, int* pm, int* pd);
 	bool itod(int* pdate, int year, int month, int day);
-	void ttoi(int itime, int* phour, int* pminute, int* psecond, int* ptt);
+    void ttoi(int itime, int& phour, int& pminute, int& psecond, int& ptt);
 	void itot(int* ptime, int hour, int minute, int second = 0, int tenthousandths = 0);
 
 }

@@ -37,6 +37,11 @@
 #pragma hdrstop
 #endif
 
+#ifdef __unix
+#include <cstring>
+using namespace std;
+#endif
+
 using namespace ibpp_internals;
 
 //	(((((((( OBJECT INTERFACE IMPLEMENTATION ))))))))
@@ -656,6 +661,7 @@ void StatementImpl::Set(int param, const IBPP::DBKey& key)
 	mInRow->Set(param, key);
 }
 
+
 /*
 void StatementImpl::Set(int param, const IBPP::Value& value)
 {
@@ -1051,7 +1057,7 @@ bool StatementImpl::Get(const std::string& name, IBPP::Array& retarray)
 	if (mOutRow == 0)
 		throw LogicExceptionImpl("Statement::Get", _("The row is not initialized."));
 
-	return mOutRow->Get(name, retarray);
+    return mOutRow->Get(name, retarray);
 }
 
 /*
